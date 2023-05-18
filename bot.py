@@ -18,14 +18,13 @@ class Bot(Client):
 
     def __init__(self):
         super().__init__(
-            session_name=SESSION,
+            name=SESSION,
             api_id=API_ID,
             api_hash=API_HASH,
             bot_token=BOT_TOKEN,
-            workers=50,
+            workers=300,
             plugins={"root": "plugins"},
-            sleep_threshold=5,
-            parse_mode="html",
+            sleep_threshold=10,
         )
 
     async def start(self):
