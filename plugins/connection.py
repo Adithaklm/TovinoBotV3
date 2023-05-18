@@ -32,10 +32,15 @@ async def addconnection(client, message):
 
     try:
         st = await client.get_chat_member(group_id, userid)
+
         if (
-                st.status != "administrator"
-                and st.status != "creator"
+
+                st.status != enums.ChatMemberStatus.ADMINISTRATOR
+
+                and st.status != enums.ChatMemberStatus.OWNER
+
                 and userid not in ADMINS
+
         ):
             await message.reply_text("You should be an admin in Given group!", quote=True)
             return
@@ -94,9 +99,9 @@ async def deleteconnection(client, message):
 
         st = await client.get_chat_member(group_id, userid)
         if (
-                st.status != "administrator"
-                and st.status != "creator"
-                and str(userid) not in ADMINS
+                st.status != enums.ChatMemberStatus.ADMINISTRATOR
+                and st.status != enums.ChatMemberStatus.OWNER
+                and userid not in ADMINS
         ):
             return
 
